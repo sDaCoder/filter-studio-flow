@@ -40,20 +40,20 @@ export function DownloadDialog({ image, filters, fileName }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size="sm" className="gap-1.5">
-          <Download className="w-4 h-4" />
+        <Button size="sm" className="gap-1.5 h-7 text-[11px] font-mono bg-primary text-primary-foreground hover:bg-primary/90">
+          <Download className="w-3.5 h-3.5" />
           Export
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-sm">
         <DialogHeader>
-          <DialogTitle>Export Image</DialogTitle>
+          <DialogTitle className="font-mono text-sm">Export Image</DialogTitle>
         </DialogHeader>
         <div className="space-y-4 pt-2">
           <div className="space-y-2">
-            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Format</label>
+            <label className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-widest">Format</label>
             <Select value={format} onValueChange={(v) => setFormat(v as "png" | "jpeg" | "webp")}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger className="font-mono text-xs"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="png">PNG (Lossless)</SelectItem>
                 <SelectItem value="jpeg">JPEG</SelectItem>
@@ -65,17 +65,17 @@ export function DownloadDialog({ image, filters, fileName }: Props) {
           {format !== "png" && (
             <div className="space-y-2">
               <div className="flex justify-between">
-                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Quality</label>
-                <span className="text-xs font-mono text-muted-foreground">{quality}%</span>
+                <label className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-widest">Quality</label>
+                <span className="text-[10px] font-mono text-muted-foreground">{quality}%</span>
               </div>
               <Slider min={10} max={100} step={1} value={[quality]} onValueChange={([v]) => setQuality(v)} />
             </div>
           )}
 
           <div className="space-y-2">
-            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Resolution</label>
+            <label className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-widest">Resolution</label>
             <Select value={String(resScale)} onValueChange={(v) => setResScale(Number(v))}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger className="font-mono text-xs"><SelectValue /></SelectTrigger>
               <SelectContent>
                 {RESOLUTIONS.map(r => (
                   <SelectItem key={r.scale} value={String(r.scale)}>
@@ -86,7 +86,7 @@ export function DownloadDialog({ image, filters, fileName }: Props) {
             </Select>
           </div>
 
-          <Button className="w-full" onClick={handleDownload}>
+          <Button className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleDownload}>
             <Download className="w-4 h-4 mr-2" />
             Download
           </Button>

@@ -22,11 +22,11 @@ export function PresetFilters({ imageSrc, onApply, customPresets, onSave, onDele
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Presets</h3>
+        <h3 className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-widest">Presets</h3>
         <Button
           variant="ghost"
           size="sm"
-          className="h-6 px-2 text-xs"
+          className="h-6 px-2 text-[11px] font-mono text-muted-foreground hover:text-primary"
           onClick={() => setShowSave(!showSave)}
         >
           <Plus className="w-3 h-3 mr-1" />
@@ -40,11 +40,11 @@ export function PresetFilters({ imageSrc, onApply, customPresets, onSave, onDele
             placeholder="Preset name"
             value={presetName}
             onChange={(e) => setPresetName(e.target.value)}
-            className="h-8 text-xs"
+            className="h-7 text-xs font-mono"
           />
           <Button
             size="sm"
-            className="h-8 text-xs"
+            className="h-7 text-xs font-mono"
             disabled={!presetName.trim()}
             onClick={() => {
               onSave(presetName.trim());
@@ -57,14 +57,14 @@ export function PresetFilters({ imageSrc, onApply, customPresets, onSave, onDele
         </div>
       )}
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-1.5">
         {allPresets.map((preset) => (
           <motion.button
             key={preset.id}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => onApply(preset)}
-            className="relative group rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-colors"
+            className="relative group rounded overflow-hidden border border-border hover:border-primary/50 transition-colors"
           >
             {imageSrc ? (
               <div className="aspect-square overflow-hidden">
@@ -78,15 +78,15 @@ export function PresetFilters({ imageSrc, onApply, customPresets, onSave, onDele
             ) : (
               <div className="aspect-square bg-muted" />
             )}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-background/90 to-transparent p-1.5">
-              <span className="text-[10px] font-medium text-foreground">{preset.name}</span>
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-background/90 to-transparent p-1">
+              <span className="text-[9px] font-mono font-medium text-foreground">{preset.name}</span>
             </div>
             {preset.custom && (
               <button
                 onClick={(e) => { e.stopPropagation(); onDelete(preset.id); }}
-                className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-destructive/80"
+                className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded bg-destructive/80"
               >
-                <Trash2 className="w-3 h-3 text-destructive-foreground" />
+                <Trash2 className="w-2.5 h-2.5 text-destructive-foreground" />
               </button>
             )}
           </motion.button>

@@ -40,12 +40,12 @@ export function FilterSliderItem({ config, value, onChange, onCommit }: Props) {
   const isModified = value !== config.defaultVal;
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+        <label className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-widest">
           {config.label}
         </label>
-        <span className={`text-xs font-mono tabular-nums ${isModified ? "text-primary" : "text-muted-foreground"}`}>
+        <span className={`text-[10px] font-mono tabular-nums ${isModified ? "text-primary" : "text-muted-foreground"}`}>
           {Math.round(value * 10) / 10}{config.unit}
         </span>
       </div>
