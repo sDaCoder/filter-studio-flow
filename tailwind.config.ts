@@ -12,9 +12,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ["Outfit", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
-        display: ["Outfit", "sans-serif"],
+        body: ["DM Sans", "sans-serif"],
+        mono: ["Space Mono", "monospace"],
+        display: ["Space Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -82,6 +82,10 @@ export default {
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
+        },
+        "grain-drift": {
+          "0%": { transform: "translate(0, 0)" },
+          "100%": { transform: "translate(-10%, -10%)" },
         },
       },
       animation: {
