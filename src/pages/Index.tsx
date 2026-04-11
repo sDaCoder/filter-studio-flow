@@ -33,7 +33,7 @@ export default function Index() {
   }, [editor.undo, editor.redo]);
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
+    <div className="flex flex-col h-screen overflow-hidden grain-overlay">
       <EditorToolbar
         canUndo={editor.canUndo}
         canRedo={editor.canRedo}
