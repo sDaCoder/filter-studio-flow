@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Undo2, Redo2, RotateCcw, Sun, Moon } from "lucide-react";
+import { Undo2, Redo2, RotateCcw, Sun, Moon, PanelRight, PanelRightClose } from "lucide-react";
 import { DownloadDialog } from "./DownloadDialog";
 import { FilterState } from "@/lib/imageProcessor";
 
@@ -14,11 +14,15 @@ interface Props {
   fileName: string;
   isDark: boolean;
   onToggleTheme: () => void;
+  showSidebarToggle?: boolean;
+  sidebarOpen?: boolean;
+  onToggleSidebar?: () => void;
 }
 
 export function EditorToolbar({
   canUndo, canRedo, onUndo, onRedo, onReset,
   image, filters, fileName, isDark, onToggleTheme,
+  showSidebarToggle, sidebarOpen, onToggleSidebar,
 }: Props) {
   return (
     <header className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-card">
@@ -50,6 +54,11 @@ export function EditorToolbar({
         <Button variant="ghost" size="icon" className="w-7 h-7 text-muted-foreground hover:text-primary" onClick={onToggleTheme}>
           {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
         </Button>
+        {showSidebarToggle && (
+          <Button variant="ghost" size="icon" className="w-7 h-7 text-muted-foreground hover:text-primary" onClick={onToggleSidebar}>
+            {sidebarOpen ? <PanelRightClose className="w-3.5 h-3.5" /> : <PanelRight className="w-3.5 h-3.5" />}
+          </Button>
+        )}
         {image && (
           <DownloadDialog image={image} filters={filters} fileName={fileName} />
         )}
