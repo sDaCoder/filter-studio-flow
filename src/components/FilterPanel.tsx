@@ -22,18 +22,18 @@ export function FilterPanel({
   onUpdateFilter, onCommit, onApplyPreset, onSavePreset, onDeletePreset,
 }: Props) {
   return (
-    <aside className="w-72 lg:w-80 border-l border-border bg-card flex flex-col">
+    <aside className="w-72 lg:w-80 border-l glass flex flex-col">
       <Tabs defaultValue="adjust" className="flex flex-col flex-1">
-        <TabsList className="grid grid-cols-3 mx-3 mt-3 bg-secondary/50 h-8">
-          <TabsTrigger value="adjust" className="gap-1 text-[11px] font-mono data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+        <TabsList className="grid grid-cols-3 mx-3 mt-3 glass-subtle rounded-xl h-8">
+          <TabsTrigger value="adjust" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all">
             <Sliders className="w-3 h-3" />
             Adjust
           </TabsTrigger>
-          <TabsTrigger value="rgb" className="gap-1 text-[11px] font-mono data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+          <TabsTrigger value="rgb" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all">
             <Palette className="w-3 h-3" />
             RGB
           </TabsTrigger>
-          <TabsTrigger value="presets" className="gap-1 text-[11px] font-mono data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+          <TabsTrigger value="presets" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all">
             <Layers className="w-3 h-3" />
             Presets
           </TabsTrigger>
@@ -41,7 +41,7 @@ export function FilterPanel({
 
         <ScrollArea className="flex-1">
           <TabsContent value="adjust" className="p-4 space-y-4 mt-0">
-            {FILTER_CONFIGS.map((config, i) => (
+            {FILTER_CONFIGS.map((config) => (
               <FilterSliderItem
                 key={config.key}
                 config={config}

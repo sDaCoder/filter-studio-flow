@@ -28,7 +28,7 @@ export function ImageUploader({ onImageLoad }: Props) {
   }, [handleFile]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] p-8 grain-overlay">
+    <div className="flex flex-col items-center justify-center min-h-[60vh] p-8">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,10 +38,10 @@ export function ImageUploader({ onImageLoad }: Props) {
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
           onDragLeave={() => setIsDragging(false)}
           onDrop={handleDrop}
-          className={`relative flex flex-col items-center justify-center w-full max-w-lg aspect-[4/3] rounded-lg border-2 border-dashed transition-all duration-300 cursor-pointer group px-[20px] py-0 pr-[20px] pb-0
+          className={`relative flex flex-col items-center justify-center w-full max-w-lg aspect-[4/3] rounded-2xl border-2 border-dashed transition-all duration-300 cursor-pointer group px-[20px] py-0
             ${isDragging
-              ? "border-primary bg-primary/5 glow-primary scale-[1.02]"
-              : "border-border hover:border-primary/40"
+              ? "border-primary glass-glow scale-[1.02]"
+              : "border-foreground/10 glass glass-hover"
             }`}
           onClick={() => document.getElementById("file-input")?.click()}
         >
@@ -54,7 +54,7 @@ export function ImageUploader({ onImageLoad }: Props) {
               className="flex flex-col items-center gap-4"
             >
               <motion.div
-                className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors"
+                className="w-14 h-14 rounded-2xl glass flex items-center justify-center group-hover:scale-105 transition-transform"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}

@@ -6,75 +6,89 @@
 
 @layer base {
   :root {
-    --background: 40 6% 97%;
-    --foreground: 25 5% 26%;
-    --card: 40 6% 96%;
-    --card-foreground: 25 5% 26%;
-    --popover: 40 6% 96%;
-    --popover-foreground: 25 5% 26%;
+    --background: 220 20% 96%;
+    --foreground: 220 15% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
     --primary: 38 92% 50%;
-    --primary-foreground: 25 10% 8%;
-    --secondary: 30 6% 90%;
-    --secondary-foreground: 25 5% 26%;
-    --muted: 30 6% 92%;
-    --muted-foreground: 25 4% 46%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 220 15% 20%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 10% 46%;
     --accent: 38 92% 50%;
-    --accent-foreground: 25 10% 8%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 30 6% 86%;
-    --input: 30 6% 86%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
     --ring: 38 92% 50%;
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     --surface-elevated: 0 0% 100%;
-    --surface-sunken: 30 6% 93%;
+    --surface-sunken: 220 15% 94%;
     --glow-primary: 38 92% 50%;
     --glow-accent: 38 80% 60%;
 
-    --sidebar-background: 40 6% 97%;
-    --sidebar-foreground: 25 5% 26%;
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-bg-hover: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-border-subtle: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+    --glass-blur: blur(20px) saturate(180%);
+
+    --sidebar-background: 220 20% 96%;
+    --sidebar-foreground: 220 15% 20%;
     --sidebar-primary: 38 92% 50%;
-    --sidebar-primary-foreground: 25 10% 8%;
-    --sidebar-accent: 30 6% 92%;
-    --sidebar-accent-foreground: 25 5% 26%;
-    --sidebar-border: 30 6% 86%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 92%;
+    --sidebar-accent-foreground: 220 15% 20%;
+    --sidebar-border: 220 13% 88%;
     --sidebar-ring: 38 92% 50%;
   }
 
   .dark {
-    --background: 20 14% 4%;
-    --foreground: 20 6% 90%;
-    --card: 24 10% 10%;
-    --card-foreground: 20 6% 90%;
-    --popover: 24 10% 10%;
-    --popover-foreground: 20 6% 90%;
+    --background: 230 25% 7%;
+    --foreground: 220 15% 90%;
+    --card: 230 20% 12%;
+    --card-foreground: 220 15% 90%;
+    --popover: 230 20% 12%;
+    --popover-foreground: 220 15% 90%;
     --primary: 38 92% 50%;
-    --primary-foreground: 20 14% 4%;
-    --secondary: 24 8% 14%;
-    --secondary-foreground: 20 6% 90%;
-    --muted: 24 8% 12%;
-    --muted-foreground: 24 5% 64%;
+    --primary-foreground: 230 25% 7%;
+    --secondary: 230 15% 15%;
+    --secondary-foreground: 220 15% 90%;
+    --muted: 230 15% 14%;
+    --muted-foreground: 220 10% 60%;
     --accent: 38 92% 50%;
-    --accent-foreground: 20 14% 4%;
+    --accent-foreground: 230 25% 7%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 20 8% 16%;
-    --input: 20 8% 16%;
+    --border: 230 15% 18%;
+    --input: 230 15% 18%;
     --ring: 38 92% 50%;
 
-    --surface-elevated: 24 10% 12%;
-    --surface-sunken: 20 14% 3%;
+    --surface-elevated: 230 20% 14%;
+    --surface-sunken: 230 25% 5%;
     --glow-primary: 38 92% 50%;
     --glow-accent: 38 80% 60%;
 
-    --sidebar-background: 20 14% 4%;
-    --sidebar-foreground: 20 6% 90%;
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-bg-hover: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-border-subtle: rgba(255, 255, 255, 0.06);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+    --glass-blur: blur(24px) saturate(180%);
+
+    --sidebar-background: 230 25% 7%;
+    --sidebar-foreground: 220 15% 90%;
     --sidebar-primary: 38 92% 50%;
-    --sidebar-primary-foreground: 20 14% 4%;
-    --sidebar-accent: 24 10% 12%;
-    --sidebar-accent-foreground: 20 6% 90%;
-    --sidebar-border: 20 8% 16%;
+    --sidebar-primary-foreground: 230 25% 7%;
+    --sidebar-accent: 230 20% 14%;
+    --sidebar-accent-foreground: 220 15% 90%;
+    --sidebar-border: 230 15% 18%;
     --sidebar-ring: 38 92% 50%;
   }
 }
@@ -89,6 +103,35 @@
 }
 
 @layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-hover:hover {
+    background: var(--glass-bg-hover);
+  }
+
+  .glass-subtle {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border-subtle);
+  }
+
+  .glass-border {
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-glow {
+    box-shadow: var(--glass-shadow),
+                0 0 20px -4px hsl(var(--glow-primary) / 0.15),
+                0 0 60px -8px hsl(var(--glow-primary) / 0.08);
+  }
+
   .glow-primary {
     box-shadow: 0 0 20px -4px hsl(var(--glow-primary) / 0.4),
                 0 0 60px -8px hsl(var(--glow-primary) / 0.2);
@@ -103,21 +146,33 @@
   .surface-sunken {
     background-color: hsl(var(--surface-sunken));
   }
-  .grain-overlay {
-    position: relative;
-  }
-  .grain-overlay::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: 1;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 128px 128px;
-  }
   .glow-amber-sm {
     box-shadow: 0 0 12px -3px hsl(38 92% 50% / 0.3);
+  }
+
+  .gradient-mesh {
+    background:
+      radial-gradient(ellipse at 20% 50%, hsl(38 92% 50% / 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsl(260 60% 60% / 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, hsl(200 70% 50% / 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 40% 30%, hsl(340 60% 55% / 0.04) 0%, transparent 50%);
+    animation: mesh-drift 20s ease-in-out infinite alternate;
+  }
+
+  .dark .gradient-mesh {
+    background:
+      radial-gradient(ellipse at 20% 50%, hsl(38 92% 50% / 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsl(260 60% 60% / 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, hsl(200 70% 50% / 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 40% 30%, hsl(340 60% 55% / 0.04) 0%, transparent 50%);
+  }
+}
+
+@keyframes mesh-drift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 50% 100%, 30% 20%;
+  }
+  100% {
+    background-position: 30% 20%, 70% 40%, 80% 60%, 10% 50%;
   }
 }

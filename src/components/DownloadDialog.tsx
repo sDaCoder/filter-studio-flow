@@ -40,7 +40,7 @@ export function DownloadDialog({ image, filters, fileName }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size="sm" className="gap-1.5 h-7 text-[11px] font-mono bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button size="sm" className="gap-1.5 h-7 text-[11px] font-mono rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 shadow-sm">
           <Download className="w-3.5 h-3.5" />
           Export
         </Button>
@@ -53,8 +53,8 @@ export function DownloadDialog({ image, filters, fileName }: Props) {
           <div className="space-y-2">
             <label className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-widest">Format</label>
             <Select value={format} onValueChange={(v) => setFormat(v as "png" | "jpeg" | "webp")}>
-              <SelectTrigger className="font-mono text-xs"><SelectValue /></SelectTrigger>
-              <SelectContent>
+              <SelectTrigger className="font-mono text-xs glass-subtle rounded-xl border-0"><SelectValue /></SelectTrigger>
+              <SelectContent className="glass rounded-xl border-0">
                 <SelectItem value="png">PNG (Lossless)</SelectItem>
                 <SelectItem value="jpeg">JPEG</SelectItem>
                 <SelectItem value="webp">WebP</SelectItem>
@@ -75,8 +75,8 @@ export function DownloadDialog({ image, filters, fileName }: Props) {
           <div className="space-y-2">
             <label className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-widest">Resolution</label>
             <Select value={String(resScale)} onValueChange={(v) => setResScale(Number(v))}>
-              <SelectTrigger className="font-mono text-xs"><SelectValue /></SelectTrigger>
-              <SelectContent>
+              <SelectTrigger className="font-mono text-xs glass-subtle rounded-xl border-0"><SelectValue /></SelectTrigger>
+              <SelectContent className="glass rounded-xl border-0">
                 {RESOLUTIONS.map(r => (
                   <SelectItem key={r.scale} value={String(r.scale)}>
                     {r.label} {image ? `(${Math.round(image.naturalWidth * r.scale)}×${Math.round(image.naturalHeight * r.scale)})` : ""}
@@ -86,7 +86,7 @@ export function DownloadDialog({ image, filters, fileName }: Props) {
             </Select>
           </div>
 
-          <Button className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleDownload}>
+          <Button className="w-full font-mono rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 shadow-sm" onClick={handleDownload}>
             <Download className="w-4 h-4 mr-2" />
             Download
           </Button>

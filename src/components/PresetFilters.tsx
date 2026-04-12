@@ -26,7 +26,7 @@ export function PresetFilters({ imageSrc, onApply, customPresets, onSave, onDele
         <Button
           variant="ghost"
           size="sm"
-          className="h-6 px-2 text-[11px] font-mono text-muted-foreground hover:text-primary"
+          className="h-6 px-2 text-[11px] font-mono text-muted-foreground hover:text-primary rounded-lg hover:bg-white/10"
           onClick={() => setShowSave(!showSave)}
         >
           <Plus className="w-3 h-3 mr-1" />
@@ -40,11 +40,11 @@ export function PresetFilters({ imageSrc, onApply, customPresets, onSave, onDele
             placeholder="Preset name"
             value={presetName}
             onChange={(e) => setPresetName(e.target.value)}
-            className="h-7 text-xs font-mono"
+            className="h-7 text-xs font-mono glass-subtle rounded-lg border-0"
           />
           <Button
             size="sm"
-            className="h-7 text-xs font-mono"
+            className="h-7 text-xs font-mono rounded-lg bg-primary/90 hover:bg-primary"
             disabled={!presetName.trim()}
             onClick={() => {
               onSave(presetName.trim());
@@ -64,7 +64,7 @@ export function PresetFilters({ imageSrc, onApply, customPresets, onSave, onDele
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => onApply(preset)}
-            className="relative group rounded overflow-hidden border border-border hover:border-primary/50 transition-colors"
+            className="relative group rounded-xl overflow-hidden glass glass-hover transition-all hover:glass-glow"
           >
             {imageSrc ? (
               <div className="aspect-square overflow-hidden">
@@ -76,15 +76,15 @@ export function PresetFilters({ imageSrc, onApply, customPresets, onSave, onDele
                 />
               </div>
             ) : (
-              <div className="aspect-square bg-muted" />
+              <div className="aspect-square bg-muted/30" />
             )}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-background/90 to-transparent p-1">
+            <div className="absolute bottom-0 inset-x-0 glass p-1 border-0 border-t">
               <span className="text-[9px] font-mono font-medium text-foreground">{preset.name}</span>
             </div>
             {preset.custom && (
               <button
                 onClick={(e) => { e.stopPropagation(); onDelete(preset.id); }}
-                className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded bg-destructive/80"
+                className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded-lg bg-destructive/80"
               >
                 <Trash2 className="w-2.5 h-2.5 text-destructive-foreground" />
               </button>
