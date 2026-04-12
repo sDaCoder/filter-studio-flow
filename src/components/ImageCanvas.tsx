@@ -30,13 +30,16 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
       animate={{ opacity: 1 }}
       className="relative flex-1 flex flex-col overflow-hidden"
     >
-      {/* Toolbar */}
-      <div className="flex items-center justify-between px-3 py-1.5 border-b border-border bg-card">
+      {/* Sub-toolbar */}
+      <div className="flex items-center justify-between px-3 py-1.5 border-b glass">
         <div className="flex items-center gap-2">
           <button
             onClick={onToggleCompare}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-medium font-mono transition-colors
-              ${compareMode ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`}
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-xl text-[11px] font-medium font-mono transition-all
+              ${compareMode
+                ? "bg-primary/90 text-primary-foreground shadow-sm"
+                : "glass-subtle glass-hover text-foreground/70 hover:text-foreground"
+              }`}
           >
             {compareMode ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
             {compareMode ? "Exit" : "Compare"}
@@ -45,7 +48,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
         <div className="flex items-center gap-1">
           <button
             onClick={() => setZoom(z => Math.max(0.25, z - 0.25))}
-            className="p-1 rounded hover:bg-secondary transition-colors"
+            className="p-1.5 rounded-xl glass-subtle glass-hover transition-all"
           >
             <ZoomOut className="w-3.5 h-3.5 text-muted-foreground" />
           </button>
@@ -54,7 +57,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
           </span>
           <button
             onClick={() => setZoom(z => Math.min(4, z + 0.25))}
-            className="p-1 rounded hover:bg-secondary transition-colors"
+            className="p-1.5 rounded-xl glass-subtle glass-hover transition-all"
           >
             <ZoomIn className="w-3.5 h-3.5 text-muted-foreground" />
           </button>
@@ -63,7 +66,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
 
       {/* Canvas area */}
       <div
-        className="flex-1 overflow-auto flex items-center justify-center p-4 surface-sunken grain-overlay"
+        className="flex-1 overflow-auto flex items-center justify-center p-4 bg-background/50"
         onMouseMove={handleMouseMove}
         onMouseDown={() => compareMode && setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
@@ -75,20 +78,19 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
         >
           {compareMode ? (
             <div className="relative">
-              <img src={imageSrc} alt="Original" className="max-w-full max-h-[70vh] rounded" draggable={false} />
+              <img src={imageSrc} alt="Original" className="max-w-full max-h-[70vh] rounded-xl" draggable={false} />
               <div
-                className="absolute inset-0 overflow-hidden rounded"
+                className="absolute inset-0 overflow-hidden rounded-xl"
                 style={{ width: `${splitPos}%` }}
               >
                 <img
                   src={imageSrc}
                   alt="Filtered"
-                  className="max-h-[70vh] rounded"
+                  className="max-h-[70vh] rounded-xl"
                   style={{ filter: cssFilter }}
                   draggable={false}
                 />
               </div>
-              {/* Amber divider */}
               <div
                 className="absolute top-0 bottom-0 w-0.5 bg-primary cursor-col-resize"
                 style={{ left: `${splitPos}%` }}
@@ -97,10 +99,10 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
                   <div className="w-2.5 h-0.5 bg-primary-foreground rounded" />
                 </div>
               </div>
-              <div className="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-background/70 backdrop-blur text-[9px] font-mono font-medium text-foreground uppercase tracking-wider">
+              <div className="absolute top-2 left-2 px-2 py-0.5 rounded-lg glass text-[9px] font-mono font-medium text-foreground uppercase tracking-wider">
                 Edited
               </div>
-              <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-background/70 backdrop-blur text-[9px] font-mono font-medium text-foreground uppercase tracking-wider">
+              <div className="absolute top-2 right-2 px-2 py-0.5 rounded-lg glass text-[9px] font-mono font-medium text-foreground uppercase tracking-wider">
                 Original
               </div>
             </div>
@@ -108,7 +110,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
             <img
               src={imageSrc}
               alt="Preview"
-              className="max-w-full max-h-[70vh] rounded shadow-lg"
+              className="max-w-full max-h-[70vh] rounded-xl shadow-2xl"
               style={{ filter: cssFilter }}
               draggable={false}
             />
