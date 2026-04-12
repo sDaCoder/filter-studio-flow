@@ -14,6 +14,7 @@ export default function Index() {
     }
     return true;
   });
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
@@ -45,6 +46,9 @@ export default function Index() {
         fileName={editor.fileName}
         isDark={isDark}
         onToggleTheme={() => setIsDark(!isDark)}
+        showSidebarToggle={!!editor.imageSrc}
+        sidebarOpen={sidebarOpen}
+        onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
       />
 
       <div className="flex flex-1 overflow-hidden">
@@ -65,16 +69,28 @@ export default function Index() {
                   onToggleCompare={() => editor.setCompareMode(!editor.compareMode)}
                 />
               </div>
-              <FilterPanel
-                filters={editor.filters}
-                imageSrc={editor.imageSrc}
-                customPresets={editor.customPresets}
-                onUpdateFilter={editor.updateFilter}
-                onCommit={editor.commitFilter}
-                onApplyPreset={editor.applyPreset}
-                onSavePreset={editor.saveCustomPreset}
-                onDeletePreset={editor.deleteCustomPreset}
-              />
+              <AnimatePresence>
+                {sidebarOpen && (
+                  <motion.div
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: "auto", opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <FilterPanel
+                      filters={editor.filters}
+                      imageSrc={editor.imageSrc}
+                      customPresets={editor.customPresets}
+                      onUpdateFilter={editor.updateFilter}
+                      onCommit={editor.commitFilter}
+                      onApplyPreset={editor.applyPreset}
+                      onSavePreset={editor.saveCustomPreset}
+                      onDeletePreset={editor.deleteCustomPreset}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ) : (
             <motion.div
