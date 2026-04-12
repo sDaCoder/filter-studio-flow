@@ -83,9 +83,9 @@ export default {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
-        "grain-drift": {
-          "0%": { transform: "translate(0, 0)" },
-          "100%": { transform: "translate(-10%, -10%)" },
+        "mesh-drift": {
+          "0%": { backgroundPosition: "0% 0%, 100% 0%, 50% 100%, 30% 20%" },
+          "100%": { backgroundPosition: "30% 20%, 70% 40%, 80% 60%, 10% 50%" },
         },
       },
       animation: {
@@ -93,6 +93,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.4s ease-out",
         shimmer: "shimmer 2s infinite linear",
+        "mesh-drift": "mesh-drift 20s ease-in-out infinite alternate",
       },
     },
   },
