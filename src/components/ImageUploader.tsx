@@ -38,7 +38,7 @@ export function ImageUploader({ onImageLoad }: Props) {
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
           onDragLeave={() => setIsDragging(false)}
           onDrop={handleDrop}
-          className={`relative flex flex-col items-center justify-center w-full max-w-lg aspect-[4/3] rounded-lg border-2 border-dashed transition-all duration-300 cursor-pointer group
+          className={`relative flex flex-col items-center justify-center w-full max-w-lg aspect-[4/3] rounded-lg border-2 border-dashed transition-all duration-300 cursor-pointer group px-[20px] py-0 pr-[20px] pb-0
             ${isDragging
               ? "border-primary bg-primary/5 glow-primary scale-[1.02]"
               : "border-border hover:border-primary/40"
