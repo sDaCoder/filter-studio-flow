@@ -24,16 +24,16 @@ export function FilterPanel({
   return (
     <aside className="w-72 lg:w-80 border-l glass flex flex-col">
       <Tabs defaultValue="adjust" className="flex flex-col flex-1">
-        <TabsList className="grid grid-cols-3 mx-3 mt-3 glass-subtle rounded-xl h-8 items-center">
-          <TabsTrigger value="adjust" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all">
+        <TabsList className="grid grid-cols-3 mx-3 mt-3 glass-subtle rounded-xl h-8 items-center pb-[6px] px-[2px] py-px">
+          <TabsTrigger value="adjust" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all mb-0 my-0">
             <Sliders className="w-3 h-3" />
             Adjust
           </TabsTrigger>
-          <TabsTrigger value="rgb" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all">
+          <TabsTrigger value="rgb" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all mb-0 my-0">
             <Palette className="w-3 h-3" />
             RGB
           </TabsTrigger>
-          <TabsTrigger value="presets" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all">
+          <TabsTrigger value="presets" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all mb-0 my-0">
             <Layers className="w-3 h-3" />
             Presets
           </TabsTrigger>
