@@ -130,15 +130,12 @@ export default function Index() {
                     onClick={() => setSidebarOpen(false)}
                   />
                   <motion.div
-                    initial={{ y: "100%", opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: "100%", opacity: 0 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute bottom-3 left-3 right-3 z-50 max-h-[70vh] rounded-2xl overflow-hidden shadow-2xl"
+                    initial={{ x: "100%", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: "100%", opacity: 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute top-2 right-2 z-50 max-h-[calc(100%-1rem)] w-72 rounded-2xl overflow-hidden shadow-2xl"
                   >
-                    <div className="w-full flex justify-center pt-2 pb-1">
-                      <div className="w-10 h-1 rounded-full bg-foreground/20" />
-                    </div>
                     {filterPanel}
                   </motion.div>
                 </>
