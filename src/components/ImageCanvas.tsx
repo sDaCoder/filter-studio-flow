@@ -66,19 +66,25 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
 
       {/* Canvas area */}
       <div
-        className="flex-1 overflow-auto flex items-center justify-center p-4 bg-background/50"
+        className={`flex-1 overflow-auto p-4 bg-background/50 ${zoom <= 1 ? 'flex items-center justify-center' : ''}`}
         onMouseMove={handleMouseMove}
         onMouseDown={() => compareMode && setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
       >
         <div
-          className="relative select-none"
-          style={{ transform: `scale(${zoom})`, transformOrigin: "center", transition: "transform 0.2s ease" }}
+          className="relative select-none inline-block"
+          style={{
+            minWidth: zoom > 1 ? `${zoom * 100}%` : undefined,
+            minHeight: zoom > 1 ? `${zoom * 100}%` : undefined,
+            display: zoom > 1 ? 'flex' : undefined,
+            alignItems: zoom > 1 ? 'center' : undefined,
+            justifyContent: zoom > 1 ? 'center' : undefined,
+          }}
         >
           {compareMode ? (
             <div className="relative">
-              <img src={imageSrc} alt="Original" className="max-w-full max-h-[70vh] rounded-xl" draggable={false} />
+              <img src={imageSrc} alt="Original" className="rounded-xl" style={{ maxWidth: zoom <= 1 ? '100%' : 'none', maxHeight: zoom <= 1 ? '70vh' : 'none', width: zoom > 1 ? `${zoom * 100}%` : undefined }} draggable={false} />
               <div
                 className="absolute inset-0 overflow-hidden rounded-xl"
                 style={{ width: `${splitPos}%` }}
@@ -86,8 +92,8 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
                 <img
                   src={imageSrc}
                   alt="Filtered"
-                  className="max-h-[70vh] rounded-xl"
-                  style={{ filter: cssFilter }}
+                  className="rounded-xl"
+                  style={{ filter: cssFilter, maxHeight: zoom <= 1 ? '70vh' : 'none', width: zoom > 1 ? `${zoom * 100}%` : undefined }}
                   draggable={false}
                 />
               </div>
@@ -110,8 +116,13 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
             <img
               src={imageSrc}
               alt="Preview"
-              className="max-w-full max-h-[70vh] rounded-xl shadow-2xl"
-              style={{ filter: cssFilter }}
+              className="rounded-xl shadow-2xl"
+              style={{
+                filter: cssFilter,
+                maxWidth: zoom <= 1 ? '100%' : 'none',
+                maxHeight: zoom <= 1 ? '70vh' : 'none',
+                width: zoom > 1 ? `${zoom * 100}%` : undefined,
+              }}
               draggable={false}
             />
           )}
