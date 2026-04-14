@@ -116,6 +116,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onWheel={handleWheel}
       >
         <div
           className="relative select-none inline-block"
