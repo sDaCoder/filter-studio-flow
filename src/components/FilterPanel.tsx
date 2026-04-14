@@ -22,7 +22,7 @@ export function FilterPanel({
   onUpdateFilter, onCommit, onApplyPreset, onSavePreset, onDeletePreset,
 }: Props) {
   return (
-    <aside className="w-72 lg:w-80 sm:border-l glass flex flex-col overflow-hidden max-sm:w-full max-sm:border-l-0 max-sm:max-h-[60vh]">
+    <aside className="w-72 lg:w-80 h-full sm:border-l glass flex flex-col overflow-hidden max-sm:w-full max-sm:border-l-0 max-sm:max-h-[60vh]">
       <Tabs defaultValue="adjust" className="flex flex-col flex-1 min-h-0">
         <TabsList className="grid grid-cols-3 mx-3 mt-3 glass-subtle rounded-xl h-8 items-center pb-[6px] px-[2px] py-px">
           <TabsTrigger value="adjust" className="gap-1 text-[11px] font-mono rounded-lg data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all mb-0 my-0">
