@@ -39,7 +39,7 @@ export function FilterPanel({
           </TabsTrigger>
         </TabsList>
 
-        <ScrollArea className="flex-1">
+        <div className="flex-1 min-h-0 overflow-auto">
           <TabsContent value="adjust" className="p-4 space-y-4 mt-0">
             {FILTER_CONFIGS.map((config) => (
               <FilterSliderItem
@@ -73,7 +73,7 @@ export function FilterPanel({
               onDelete={onDeletePreset}
             />
           </TabsContent>
-        </ScrollArea>
+        </div>
       </Tabs>
     </aside>
   );
