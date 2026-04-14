@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { getCSSFilter, FilterState } from "@/lib/imageProcessor";
 import { Eye, EyeOff, ZoomIn, ZoomOut } from "lucide-react";
@@ -13,16 +13,51 @@ interface Props {
 export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }: Props) {
   const [zoom, setZoom] = useState(1);
   const [splitPos, setSplitPos] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
+  const [isCompareDragging, setIsCompareDragging] = useState(false);
+  const [isPanning, setIsPanning] = useState(false);
+  const panStart = useRef({ x: 0, y: 0, scrollLeft: 0, scrollTop: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const cssFilter = useMemo(() => getCSSFilter(filters), [filters]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!compareMode || !isDragging) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    setSplitPos(Math.max(5, Math.min(95, x)));
-  };
+  const canPan = zoom > 1 && !compareMode;
+
+  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (compareMode) {
+      setIsCompareDragging(true);
+      return;
+    }
+    if (zoom > 1 && containerRef.current) {
+      setIsPanning(true);
+      panStart.current = {
+        x: e.clientX,
+        y: e.clientY,
+        scrollLeft: containerRef.current.scrollLeft,
+        scrollTop: containerRef.current.scrollTop,
+      };
+      e.preventDefault();
+    }
+  }, [compareMode, zoom]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (compareMode && isCompareDragging) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      setSplitPos(Math.max(5, Math.min(95, x)));
+      return;
+    }
+    if (isPanning && containerRef.current) {
+      const dx = e.clientX - panStart.current.x;
+      const dy = e.clientY - panStart.current.y;
+      containerRef.current.scrollLeft = panStart.current.scrollLeft - dx;
+      containerRef.current.scrollTop = panStart.current.scrollTop - dy;
+    }
+  }, [compareMode, isCompareDragging, isPanning]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsCompareDragging(false);
+    setIsPanning(false);
+  }, []);
 
   return (
     <motion.div
@@ -66,11 +101,13 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
 
       {/* Canvas area */}
       <div
+        ref={containerRef}
         className={`flex-1 overflow-auto p-4 bg-background/50 ${zoom <= 1 ? 'flex items-center justify-center' : ''}`}
+        style={{ cursor: canPan ? (isPanning ? 'grabbing' : 'grab') : undefined }}
+        onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
-        onMouseDown={() => compareMode && setIsDragging(true)}
-        onMouseUp={() => setIsDragging(false)}
-        onMouseLeave={() => setIsDragging(false)}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
       >
         <div
           className="relative select-none inline-block"
@@ -84,7 +121,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
         >
           {compareMode ? (
             <div className="relative">
-              <img src={imageSrc} alt="Original" className="rounded-xl" style={{ maxWidth: zoom <= 1 ? '100%' : 'none', maxHeight: zoom <= 1 ? '70vh' : 'none', width: zoom > 1 ? `${zoom * 100}%` : undefined }} draggable={false} />
+              <img src={imageSrc} alt="Original" className="rounded-xl" style={{ maxWidth: zoom <= 1 ? '100%' : 'none', maxHeight: zoom <= 1 ? '70vh' : 'none', width: zoom > 1 ? `${zoom * 100}%` : undefined, transition: 'width 0.3s ease, max-width 0.3s ease, max-height 0.3s ease' }} draggable={false} />
               <div
                 className="absolute inset-0 overflow-hidden rounded-xl"
                 style={{ width: `${splitPos}%` }}
@@ -93,7 +130,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
                   src={imageSrc}
                   alt="Filtered"
                   className="rounded-xl"
-                  style={{ filter: cssFilter, maxHeight: zoom <= 1 ? '70vh' : 'none', width: zoom > 1 ? `${zoom * 100}%` : undefined }}
+                  style={{ filter: cssFilter, maxHeight: zoom <= 1 ? '70vh' : 'none', width: zoom > 1 ? `${zoom * 100}%` : undefined, transition: 'width 0.3s ease, max-height 0.3s ease' }}
                   draggable={false}
                 />
               </div>
@@ -122,6 +159,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
                 maxWidth: zoom <= 1 ? '100%' : 'none',
                 maxHeight: zoom <= 1 ? '70vh' : 'none',
                 width: zoom > 1 ? `${zoom * 100}%` : undefined,
+                transition: 'width 0.3s ease, max-width 0.3s ease, max-height 0.3s ease',
               }}
               draggable={false}
             />
