@@ -59,6 +59,14 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
     setIsPanning(false);
   }, []);
 
+  const handleWheel = useCallback((e: React.WheelEvent<HTMLDivElement>) => {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      const delta = -e.deltaY * 0.01;
+      setZoom(z => Math.min(4, Math.max(0.25, z + delta)));
+    }
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
