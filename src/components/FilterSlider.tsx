@@ -34,9 +34,11 @@ interface Props {
   value: number;
   onChange: (key: keyof FilterState, value: number) => void;
   onCommit: () => void;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
 }
 
-export function FilterSliderItem({ config, value, onChange, onCommit }: Props) {
+export function FilterSliderItem({ config, value, onChange, onCommit, onDragStart, onDragEnd }: Props) {
   const isModified = value !== config.defaultVal;
 
   return (
@@ -54,8 +56,14 @@ export function FilterSliderItem({ config, value, onChange, onCommit }: Props) {
         max={config.max}
         step={config.step}
         value={[value]}
-        onValueChange={([v]) => onChange(config.key, v)}
-        onValueCommit={() => onCommit()}
+        onValueChange={([v]) => {
+          if (onDragStart) onDragStart();
+          onChange(config.key, v);
+        }}
+        onValueCommit={() => {
+          onCommit();
+          if (onDragEnd) onDragEnd();
+        }}
         className="cursor-pointer"
       />
     </div>
