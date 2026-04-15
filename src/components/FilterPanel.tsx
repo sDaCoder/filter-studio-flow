@@ -15,11 +15,14 @@ interface Props {
   onApplyPreset: (preset: Preset) => void;
   onSavePreset: (name: string) => void;
   onDeletePreset: (id: string) => void;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
 }
 
 export function FilterPanel({
   filters, imageSrc, customPresets,
   onUpdateFilter, onCommit, onApplyPreset, onSavePreset, onDeletePreset,
+  onDragStart, onDragEnd,
 }: Props) {
   return (
     <aside className="w-72 lg:w-80 h-full sm:border-l glass flex flex-col overflow-hidden max-sm:w-full max-sm:border-l-0 max-sm:max-h-[60vh]">
@@ -48,6 +51,8 @@ export function FilterPanel({
                 value={filters[config.key]}
                 onChange={onUpdateFilter}
                 onCommit={onCommit}
+                onDragStart={onDragStart}
+                onDragEnd={onDragEnd}
               />
             ))}
           </TabsContent>
@@ -60,6 +65,8 @@ export function FilterPanel({
                 value={filters[config.key]}
                 onChange={onUpdateFilter}
                 onCommit={onCommit}
+                onDragStart={onDragStart}
+                onDragEnd={onDragEnd}
               />
             ))}
           </TabsContent>
