@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useImageEditor } from "@/hooks/useImageEditor";
 import { ImageUploader } from "@/components/ImageUploader";
 import { ImageCanvas } from "@/components/ImageCanvas";
@@ -17,6 +17,10 @@ export default function Index() {
     return true;
   });
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isDraggingSlider, setIsDraggingSlider] = useState(false);
+
+  const handleSliderDragStart = useCallback(() => setIsDraggingSlider(true), []);
+  const handleSliderDragEnd = useCallback(() => setIsDraggingSlider(false), []);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
@@ -44,6 +48,8 @@ export default function Index() {
       onApplyPreset={editor.applyPreset}
       onSavePreset={editor.saveCustomPreset}
       onDeletePreset={editor.deleteCustomPreset}
+      onDragStart={handleSliderDragStart}
+      onDragEnd={handleSliderDragEnd}
     />
   );
 
