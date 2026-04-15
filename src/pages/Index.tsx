@@ -99,10 +99,11 @@ export default function Index() {
                     {sidebarOpen && (
                       <motion.div
                         initial={{ width: 0, opacity: 0 }}
-                        animate={{ width: "auto", opacity: 1 }}
+                        animate={{ width: "auto", opacity: isDraggingSlider ? 0.08 : 1 }}
                         exit={{ width: 0, opacity: 0 }}
                         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
+                        className="overflow-hidden pointer-events-auto"
+                        style={{ pointerEvents: isDraggingSlider ? 'auto' : undefined }}
                       >
                         {filterPanel}
                       </motion.div>
@@ -137,7 +138,7 @@ export default function Index() {
                   />
                   <motion.div
                     initial={{ x: "100%", opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
+                    animate={{ x: 0, opacity: isDraggingSlider ? 0.08 : 1 }}
                     exit={{ x: "100%", opacity: 0 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute top-2 right-2 z-50 max-h-[calc(100%-1rem)] w-72 rounded-2xl overflow-hidden shadow-2xl"
