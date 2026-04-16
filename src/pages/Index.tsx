@@ -6,6 +6,7 @@ import { FilterPanel } from "@/components/FilterPanel";
 import { EditorToolbar } from "@/components/EditorToolbar";
 import { AnimatePresence, motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { PanelRight, PanelRightClose } from "lucide-react";
 
 export default function Index() {
   const editor = useImageEditor();
