@@ -103,8 +103,9 @@ export function ImageUploader({ onImageLoad }: Props) {
   }, [onImageLoad, stopCamera, zoomLevel]);
 
   // Pinch-to-zoom handlers
-  const getDistance = (touches: TouchList) => {
-    const [a, b] = [touches[0], touches[1]];
+  const getDistance = (touches: React.TouchList) => {
+    const a = touches[0];
+    const b = touches[1];
     return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
   };
 
