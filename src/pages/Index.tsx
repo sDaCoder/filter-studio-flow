@@ -126,6 +126,21 @@ export default function Index() {
             )}
           </AnimatePresence>
 
+          {/* Mobile: floating sidebar toggle FAB */}
+          {isMobile && editor.imageSrc && !sidebarOpen && (
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              onClick={() => setSidebarOpen(true)}
+              className="absolute bottom-5 right-5 z-30 w-12 h-12 rounded-full glass shadow-2xl flex items-center justify-center text-foreground hover:text-primary active:scale-95 transition-transform"
+              aria-label="Open filters"
+            >
+              <PanelRight className="w-5 h-5" />
+            </motion.button>
+          )}
+
           {/* Mobile: floating glass panel */}
           {isMobile && editor.imageSrc && (
             <AnimatePresence>
