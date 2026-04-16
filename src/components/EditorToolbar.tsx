@@ -57,7 +57,7 @@ export function EditorToolbar({
           {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
         </Button>
         {showSidebarToggle && (
-          <Button variant="ghost" size="icon" className="w-7 h-7 text-muted-foreground hover:text-primary rounded-xl hover:bg-white/10" onClick={onToggleSidebar}>
+          <Button variant="ghost" size="icon" className="hidden sm:inline-flex w-7 h-7 text-muted-foreground hover:text-primary rounded-xl hover:bg-white/10" onClick={onToggleSidebar}>
             {sidebarOpen ? <PanelRightClose className="w-3.5 h-3.5" /> : <PanelRight className="w-3.5 h-3.5" />}
           </Button>
         )}
