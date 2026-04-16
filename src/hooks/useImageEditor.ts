@@ -106,11 +106,22 @@ export function useImageEditor() {
     reader.readAsDataURL(file);
   }, []);
 
+  const clearImage = useCallback(() => {
+    setImage(null);
+    setImageSrc(null);
+    setFileName("");
+    const reset = { ...DEFAULT_FILTERS };
+    setFilters(reset);
+    setHistory([{ filters: reset }]);
+    setHistoryIndex(0);
+    setCompareMode(false);
+  }, []);
+
   return {
     image, imageSrc, fileName, filters, compareMode,
     customPresets, canUndo: historyIndex > 0, canRedo: historyIndex < history.length - 1,
     updateFilter, commitFilter, undo, redo, resetFilters,
     applyPreset, saveCustomPreset, deleteCustomPreset,
-    loadImage, setCompareMode,
+    loadImage, clearImage, setCompareMode,
   };
 }

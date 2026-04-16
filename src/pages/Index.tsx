@@ -72,6 +72,7 @@ export default function Index() {
           showSidebarToggle={!!editor.imageSrc}
           sidebarOpen={sidebarOpen}
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+          onNewImage={editor.clearImage}
         />
 
         <div className="flex flex-1 overflow-hidden relative">
