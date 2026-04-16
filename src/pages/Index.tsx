@@ -134,10 +134,10 @@ export default function Index() {
               exit={{ scale: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               onClick={() => setSidebarOpen(true)}
-              className="absolute bottom-5 right-5 z-30 w-12 h-12 rounded-full glass shadow-2xl flex items-center justify-center text-foreground hover:text-primary active:scale-95 transition-transform"
+              className="absolute top-12 right-3 z-30 w-9 h-9 rounded-full glass shadow-lg flex items-center justify-center text-foreground hover:text-primary active:scale-95 transition-transform"
               aria-label="Open filters"
             >
-              <PanelRight className="w-5 h-5" />
+              <PanelRight className="w-4 h-4" />
             </motion.button>
           )}
 
