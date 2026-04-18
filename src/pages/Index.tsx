@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useImageEditor } from "@/hooks/useImageEditor";
 import { ImageUploader } from "@/components/ImageUploader";
 import { ImageCanvas } from "@/components/ImageCanvas";
@@ -6,11 +7,16 @@ import { FilterPanel } from "@/components/FilterPanel";
 import { EditorToolbar } from "@/components/EditorToolbar";
 import { AnimatePresence, motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { PanelRight, PanelRightClose } from "lucide-react";
+import { PanelRight } from "lucide-react";
+import { useGallery, getGalleryItem } from "@/hooks/useGallery";
+import { applyFiltersToCanvas } from "@/lib/imageProcessor";
+import { toast } from "sonner";
 
 export default function Index() {
   const editor = useImageEditor();
   const isMobile = useIsMobile();
+  const gallery = useGallery();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -26,6 +32,42 @@ export default function Index() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
+
+  // Load image from gallery via ?edit=<id>
+  useEffect(() => {
+    const editId = searchParams.get("edit");
+    if (!editId) return;
+    const item = getGalleryItem(editId);
+    if (item) {
+      editor.loadImageFromDataUrl(item.dataUrl, item.name);
+      toast.success(`Loaded "${item.name}" from gallery`);
+    } else {
+      toast.error("Image not found in gallery");
+    }
+    searchParams.delete("edit");
+    setSearchParams(searchParams, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSaveToGallery = useCallback(() => {
+    if (!editor.image) return;
+    try {
+      const canvas = applyFiltersToCanvas(editor.image, editor.filters);
+      const dataUrl = canvas.toDataURL("image/webp", 0.9);
+      const baseName = editor.fileName.replace(/\.[^.]+$/, "") || "Untitled";
+      gallery.addItem({
+        name: `${baseName}-edited`,
+        dataUrl,
+        width: canvas.width,
+        height: canvas.height,
+      });
+      toast.success("Saved to gallery", { description: "View it in the Gallery page." });
+    } catch (err) {
+      toast.error("Couldn't save to gallery", {
+        description: "Browser storage may be full. Try clearing some images.",
+      });
+    }
+  }, [editor.image, editor.filters, editor.fileName, gallery]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -74,6 +116,7 @@ export default function Index() {
           sidebarOpen={sidebarOpen}
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
           onNewImage={editor.clearImage}
+          onSaveToGallery={handleSaveToGallery}
         />
 
         <div className="flex flex-1 overflow-hidden relative">

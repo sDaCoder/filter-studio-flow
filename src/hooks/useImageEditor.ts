@@ -106,6 +106,20 @@ export function useImageEditor() {
     reader.readAsDataURL(file);
   }, []);
 
+  const loadImageFromDataUrl = useCallback((src: string, name: string) => {
+    setFileName(name);
+    const img = new Image();
+    img.onload = () => {
+      setImage(img);
+      setImageSrc(src);
+      const reset = { ...DEFAULT_FILTERS };
+      setFilters(reset);
+      setHistory([{ filters: reset }]);
+      setHistoryIndex(0);
+    };
+    img.src = src;
+  }, []);
+
   const clearImage = useCallback(() => {
     setImage(null);
     setImageSrc(null);
@@ -122,6 +136,6 @@ export function useImageEditor() {
     customPresets, canUndo: historyIndex > 0, canRedo: historyIndex < history.length - 1,
     updateFilter, commitFilter, undo, redo, resetFilters,
     applyPreset, saveCustomPreset, deleteCustomPreset,
-    loadImage, clearImage, setCompareMode,
+    loadImage, loadImageFromDataUrl, clearImage, setCompareMode,
   };
 }
