@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useImageEditor } from "@/hooks/useImageEditor";
 import { ImageUploader } from "@/components/ImageUploader";
 import { ImageCanvas } from "@/components/ImageCanvas";
@@ -6,7 +7,10 @@ import { FilterPanel } from "@/components/FilterPanel";
 import { EditorToolbar } from "@/components/EditorToolbar";
 import { AnimatePresence, motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { PanelRight, PanelRightClose } from "lucide-react";
+import { PanelRight } from "lucide-react";
+import { useGallery, getGalleryItem } from "@/hooks/useGallery";
+import { applyFiltersToCanvas } from "@/lib/imageProcessor";
+import { toast } from "sonner";
 
 export default function Index() {
   const editor = useImageEditor();
