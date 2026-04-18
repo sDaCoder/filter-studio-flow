@@ -15,6 +15,8 @@ import { toast } from "sonner";
 export default function Index() {
   const editor = useImageEditor();
   const isMobile = useIsMobile();
+  const gallery = useGallery();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -30,6 +32,42 @@ export default function Index() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
+
+  // Load image from gallery via ?edit=<id>
+  useEffect(() => {
+    const editId = searchParams.get("edit");
+    if (!editId) return;
+    const item = getGalleryItem(editId);
+    if (item) {
+      editor.loadImageFromDataUrl(item.dataUrl, item.name);
+      toast.success(`Loaded "${item.name}" from gallery`);
+    } else {
+      toast.error("Image not found in gallery");
+    }
+    searchParams.delete("edit");
+    setSearchParams(searchParams, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSaveToGallery = useCallback(() => {
+    if (!editor.image) return;
+    try {
+      const canvas = applyFiltersToCanvas(editor.image, editor.filters);
+      const dataUrl = canvas.toDataURL("image/webp", 0.9);
+      const baseName = editor.fileName.replace(/\.[^.]+$/, "") || "Untitled";
+      gallery.addItem({
+        name: `${baseName}-edited`,
+        dataUrl,
+        width: canvas.width,
+        height: canvas.height,
+      });
+      toast.success("Saved to gallery", { description: "View it in the Gallery page." });
+    } catch (err) {
+      toast.error("Couldn't save to gallery", {
+        description: "Browser storage may be full. Try clearing some images.",
+      });
+    }
+  }, [editor.image, editor.filters, editor.fileName, gallery]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
