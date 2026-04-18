@@ -116,6 +116,7 @@ export default function Index() {
           sidebarOpen={sidebarOpen}
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
           onNewImage={editor.clearImage}
+          onSaveToGallery={handleSaveToGallery}
         />
 
         <div className="flex flex-1 overflow-hidden relative">
