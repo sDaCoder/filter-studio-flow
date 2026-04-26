@@ -1,0 +1,21 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded square background with gradient -->
+  <rect width="40" height="40" rx="8" fill="url(#logo_grad)" />
+  
+  <!-- "P" shape (pixelated) -->
+  <path d="M10 10H26V22H14V30H10V10ZM14 18H22V14H14V18Z" fill="white" />
+  
+  <!-- "L" shape (pixelated, integrated) -->
+  <path d="M22 22H30V30H14V26H26V22Z" fill="white" fill-opacity="0.9" />
+  
+  <!-- Decorative pixel accents -->
+  <rect x="30" y="10" width="4" height="4" fill="white" fill-opacity="0.4" />
+  <rect x="10" y="30" width="4" height="4" fill="white" fill-opacity="0.2" />
+
+  <defs>
+    <linearGradient id="logo_grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f59e0b" />
+      <stop offset="1" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+</svg>
