@@ -30,13 +30,10 @@ export function EditorToolbar({
   return (
     <header className="flex items-center justify-between px-4 py-2.5 border-b glass">
       <div className="flex items-center gap-3">
-        <Link to="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
-          <img src="/logo.png" alt="PixelLab" className="w-7 h-7 rounded-lg shadow-sm" />
-          <h1 className="text-base font-display font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Pixel</span>
-            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Lab</span>
-          </h1>
-        </Link>
+        <h1 className="text-base font-display font-bold tracking-tight">
+          <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Pixel</span>
+          <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Lab</span>
+        </h1>
         <div className="hidden sm:block w-px h-4 bg-foreground/10" />
         <span className="hidden sm:block text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
           Studio
