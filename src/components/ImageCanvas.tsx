@@ -177,6 +177,26 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare, o
           )}
         </div>
       </div>
+
+      {/* Bottom action bar */}
+      <div className="flex items-center justify-center gap-2 px-3 py-2 border-t glass">
+        <Link
+          to="/gallery"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-subtle glass-hover text-[11px] font-medium text-foreground/70 hover:text-foreground transition-all"
+        >
+          <Images className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">Gallery</span>
+        </Link>
+        {onSaveToGallery && (
+          <button
+            onClick={onSaveToGallery}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-subtle glass-hover text-[11px] font-medium text-primary hover:text-primary/80 transition-all"
+          >
+            <Save className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Save</span>
+          </button>
+        )}
+      </div>
     </motion.div>
   );
 }
