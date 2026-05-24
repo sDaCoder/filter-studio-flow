@@ -1,16 +1,18 @@
 import { useMemo, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { getCSSFilter, FilterState } from "@/lib/imageProcessor";
-import { Eye, EyeOff, ZoomIn, ZoomOut } from "lucide-react";
+import { Eye, EyeOff, ZoomIn, ZoomOut, Save, Images } from "lucide-react";
 
 interface Props {
   imageSrc: string;
   filters: FilterState;
   compareMode: boolean;
   onToggleCompare: () => void;
+  onSaveToGallery?: () => void;
 }
 
-export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }: Props) {
+export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare, onSaveToGallery }: Props) {
   const [zoom, setZoom] = useState(1);
   const [splitPos, setSplitPos] = useState(50);
   const [isCompareDragging, setIsCompareDragging] = useState(false);

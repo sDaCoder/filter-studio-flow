@@ -1,6 +1,7 @@
 import { useCallback, useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Upload, Image as ImageIcon, Camera, X, SwitchCamera, Grid3X3, ZoomIn } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Upload, Image as ImageIcon, Camera, X, SwitchCamera, Grid3X3, ZoomIn, Images } from "lucide-react";
 
 interface Props {
   onImageLoad: (file: File) => void;
@@ -292,16 +293,32 @@ export function ImageUploader({ onImageLoad }: Props) {
         </div>
       </motion.div>
 
-      <motion.button
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        onClick={() => startCamera()}
-        className="flex items-center gap-2 px-5 py-2.5 rounded-xl glass glass-hover border border-foreground/10 text-sm font-medium text-foreground hover:scale-[1.02] transition-all"
-      >
-        <Camera className="w-4 h-4 text-primary" />
-        Use Camera
-      </motion.button>
+      <div className="flex items-center gap-3">
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          onClick={() => startCamera()}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl glass glass-hover border border-foreground/10 text-sm font-medium text-foreground hover:scale-[1.02] transition-all"
+        >
+          <Camera className="w-4 h-4 text-primary" />
+          Use Camera
+        </motion.button>
+
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <Link
+            to="/gallery"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl glass glass-hover border border-foreground/10 text-sm font-medium text-foreground hover:scale-[1.02] transition-all"
+          >
+            <Images className="w-4 h-4 text-primary" />
+            Gallery
+          </Link>
+        </motion.div>
+      </div>
     </div>
   );
 }
