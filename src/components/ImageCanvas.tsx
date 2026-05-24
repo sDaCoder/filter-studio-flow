@@ -1,16 +1,18 @@
 import { useMemo, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { getCSSFilter, FilterState } from "@/lib/imageProcessor";
-import { Eye, EyeOff, ZoomIn, ZoomOut } from "lucide-react";
+import { Eye, EyeOff, ZoomIn, ZoomOut, Save, Images } from "lucide-react";
 
 interface Props {
   imageSrc: string;
   filters: FilterState;
   compareMode: boolean;
   onToggleCompare: () => void;
+  onSaveToGallery?: () => void;
 }
 
-export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }: Props) {
+export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare, onSaveToGallery }: Props) {
   const [zoom, setZoom] = useState(1);
   const [splitPos, setSplitPos] = useState(50);
   const [isCompareDragging, setIsCompareDragging] = useState(false);
@@ -174,6 +176,26 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
             />
           )}
         </div>
+      </div>
+
+      {/* Bottom action bar */}
+      <div className="flex items-center justify-center gap-2 px-3 py-2 border-t glass">
+        <Link
+          to="/gallery"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-subtle glass-hover text-[11px] font-medium text-foreground/70 hover:text-foreground transition-all"
+        >
+          <Images className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">Gallery</span>
+        </Link>
+        {onSaveToGallery && (
+          <button
+            onClick={onSaveToGallery}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-subtle glass-hover text-[11px] font-medium text-primary hover:text-primary/80 transition-all"
+          >
+            <Save className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Save</span>
+          </button>
+        )}
       </div>
     </motion.div>
   );
