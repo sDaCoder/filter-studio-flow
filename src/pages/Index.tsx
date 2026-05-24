@@ -116,7 +116,6 @@ export default function Index() {
           sidebarOpen={sidebarOpen}
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
           onNewImage={editor.clearImage}
-          onSaveToGallery={handleSaveToGallery}
         />
 
         <div className="flex flex-1 overflow-hidden relative">
@@ -135,6 +134,7 @@ export default function Index() {
                     filters={editor.filters}
                     compareMode={editor.compareMode}
                     onToggleCompare={() => editor.setCompareMode(!editor.compareMode)}
+                    onSaveToGallery={handleSaveToGallery}
                   />
                 </div>
 
