@@ -4,7 +4,6 @@ import { ArrowLeft, Trash2, Pencil, Images, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useGallery } from "@/hooks/useGallery";
 import { toast } from "sonner";
-import { useState, useEffect } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,11 +19,6 @@ import {
 export default function Gallery() {
   const navigate = useNavigate();
   const { items, removeItem, clearAll } = useGallery();
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains("dark"));
-  }, []);
 
   const handleEdit = (id: string) => {
     navigate(`/?edit=${id}`);

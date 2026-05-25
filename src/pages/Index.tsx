@@ -12,26 +12,21 @@ import { useGallery, getGalleryItem } from "@/hooks/useGallery";
 import { applyFiltersToCanvas } from "@/lib/imageProcessor";
 import { toast } from "sonner";
 
-export default function Index() {
+interface Props {
+  isDark: boolean;
+  onToggleTheme: () => void;
+}
+
+export default function Index({ isDark, onToggleTheme }: Props) {
   const editor = useImageEditor();
   const isMobile = useIsMobile();
   const gallery = useGallery();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-    return true;
-  });
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isDraggingSlider, setIsDraggingSlider] = useState(false);
 
   const handleSliderDragStart = useCallback(() => setIsDraggingSlider(true), []);
   const handleSliderDragEnd = useCallback(() => setIsDraggingSlider(false), []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
 
   // Load image from gallery via ?edit=<id>
   useEffect(() => {
@@ -111,12 +106,7 @@ export default function Index() {
           filters={editor.filters}
           fileName={editor.fileName}
           isDark={isDark}
-          onToggleTheme={() => setIsDark(!isDark)}
-          showSidebarToggle={!!editor.imageSrc}
-          sidebarOpen={sidebarOpen}
-          onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
-          onNewImage={editor.clearImage}
-          onSaveToGallery={handleSaveToGallery}
+          onToggleTheme={onToggleTheme}
         />
 
         <div className="flex flex-1 overflow-hidden relative">
@@ -135,6 +125,8 @@ export default function Index() {
                     filters={editor.filters}
                     compareMode={editor.compareMode}
                     onToggleCompare={() => editor.setCompareMode(!editor.compareMode)}
+                    onNewImage={editor.clearImage}
+                    onSaveToGallery={handleSaveToGallery}
                   />
                 </div>
 

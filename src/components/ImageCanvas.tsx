@@ -1,16 +1,18 @@
 import { useMemo, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { getCSSFilter, FilterState } from "@/lib/imageProcessor";
-import { Eye, EyeOff, ZoomIn, ZoomOut } from "lucide-react";
+import { Eye, EyeOff, ImagePlus, Save, ZoomIn, ZoomOut } from "lucide-react";
 
 interface Props {
   imageSrc: string;
   filters: FilterState;
   compareMode: boolean;
   onToggleCompare: () => void;
+  onNewImage: () => void;
+  onSaveToGallery: () => void;
 }
 
-export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }: Props) {
+export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare, onNewImage, onSaveToGallery }: Props) {
   const [zoom, setZoom] = useState(1);
   const [splitPos, setSplitPos] = useState(50);
   const [isCompareDragging, setIsCompareDragging] = useState(false);
@@ -174,6 +176,28 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare }:
             />
           )}
         </div>
+      </div>
+      <div className="flex justify-center gap-3 px-4 pb-4 pt-2 bg-background/50">
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          onClick={onNewImage}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl glass glass-hover border border-foreground/10 text-sm font-medium text-foreground hover:scale-[1.02] transition-all"
+        >
+          <ImagePlus className="w-4 h-4 text-primary" />
+          New Image
+        </motion.button>
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          onClick={onSaveToGallery}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl glass glass-hover border border-foreground/10 text-sm font-medium text-foreground hover:scale-[1.02] transition-all"
+        >
+          <Save className="w-4 h-4 text-primary" />
+          Save
+        </motion.button>
       </div>
     </motion.div>
   );
