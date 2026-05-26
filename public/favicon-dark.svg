@@ -1,0 +1,32 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tile" x1="7" y1="5" x2="58" y2="59" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#181D2C"/>
+      <stop offset="1" stop-color="#090D18"/>
+    </linearGradient>
+    <linearGradient id="camera" x1="13" y1="18" x2="51" y2="51" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#32394D"/>
+      <stop offset="1" stop-color="#1D2436"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="18" y1="25" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="0.43" stop-color="#FFD15D"/>
+      <stop offset="0.68" stop-color="#A38BFF"/>
+      <stop offset="1" stop-color="#42C6E4"/>
+    </linearGradient>
+    <radialGradient id="glass" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(28 31) rotate(52) scale(22)">
+      <stop stop-color="#FFE8AF"/>
+      <stop offset="0.38" stop-color="#9873DF"/>
+      <stop offset="0.7" stop-color="#182A49"/>
+      <stop offset="1" stop-color="#070B15"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#tile)"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="15.5" stroke="#F59E0B" stroke-opacity="0.4"/>
+  <path d="M12 25C12 21.686 14.686 19 18 19H25L28.2 15H37.8L41 19H46C49.314 19 52 21.686 52 25V44C52 47.314 49.314 50 46 50H18C14.686 50 12 47.314 12 44V25Z" fill="url(#camera)" stroke="#596278" stroke-width="1.5"/>
+  <circle cx="32" cy="34" r="13" fill="url(#ring)"/>
+  <circle cx="32" cy="34" r="9.5" fill="url(#glass)"/>
+  <path d="M27 30.5C28.6 27.7 31.8 26.5 34.4 27.5C32.6 28.4 31.1 29.8 30.4 31.4C29.5 33.3 28 33.3 27 32.7C26.2 32.2 26.4 31.4 27 30.5Z" fill="white" fill-opacity="0.78"/>
+  <rect x="17" y="23" width="6" height="3.5" rx="1.75" fill="#FFB52A"/>
+  <path d="M47.5 13V19M44.5 16H50.5" stroke="#FFB52A" stroke-width="2" stroke-linecap="round"/>
+</svg>
