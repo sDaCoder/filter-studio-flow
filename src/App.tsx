@@ -21,6 +21,8 @@ const App = () => {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
     localStorage.setItem(THEME_STORAGE_KEY, isDark ? "dark" : "light");
+    const favicon = document.getElementById("app-favicon") as HTMLLinkElement | null;
+    if (favicon) favicon.href = isDark ? "/favicon-dark.svg" : "/favicon.svg";
   }, [isDark]);
 
   return (
