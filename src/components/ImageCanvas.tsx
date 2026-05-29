@@ -177,7 +177,7 @@ export function ImageCanvas({ imageSrc, filters, compareMode, onToggleCompare, o
           )}
         </div>
       </div>
-      <div className="flex justify-center gap-3 px-4 pb-4 pt-2 bg-background/50">
+      <div className="flex justify-center gap-3 px-4 pb-3 pt-1 -mt-3 bg-background/50 sm:-mt-2">
         <motion.button
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

@@ -40,9 +40,9 @@ export function DownloadDialog({ image, filters, fileName }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size="sm" className="gap-1.5 h-7 text-[11px] font-mono rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 shadow-sm">
+        <Button size="sm" className="gap-1 h-7 px-2 text-[11px] font-mono rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 shadow-sm sm:gap-1.5 sm:px-3">
           <Download className="w-3.5 h-3.5" />
-          Export
+          <span className="hidden sm:inline">Export</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-sm">
